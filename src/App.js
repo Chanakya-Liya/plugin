@@ -38,7 +38,7 @@ export default function ChatApp() {
     
     const userMessage = { 
       role: "user", 
-      content: formattedCode,
+      content: `Purpose: ${purpose}\n\n${formattedCode}`,
       purpose: purpose 
     };
     setMessages([...messages, userMessage]);
