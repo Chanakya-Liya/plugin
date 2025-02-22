@@ -66,20 +66,31 @@ export default function ChatApp() {
       
       if (data.status === 'error') {
         // Format the response with better spacing and structure
-        aiResponse = `### Error:\n${data.message}\n\n### Suggested Fix:\n\`\`\`python\n${
-          data.fix_suggestion
-            .replace('Analyze the following Python code and suggest fixes:', '')
-            .replace(/```python\n/, '')
-            .replace(/```$/, '')
-            .trim()
-        }\n\`\`\`\n\n### Refactored Code:\n\`\`\`python\n${
-          data.refactored_code
-            .split('\n')
-            .map(line => line.trim())
-            .join('\n')
-        }\n\`\`\``;
+        const fixSuggestion = data.fix_suggestion || '';
+        const refactoredCode = data.refactored_code || '';
+        
+        aiResponse = `### Error:\n${data.message || 'Unknown error'}\n\n`;
+        
+        if (fixSuggestion) {
+          aiResponse += `### Suggested Fix:\n\`\`\`python\n${
+            fixSuggestion
+              .replace('Analyze the following Python code and suggest fixes:', '')
+              .replace(/```python\n/, '')
+              .replace(/```$/, '')
+              .trim()
+          }\n\`\`\`\n\n`;
+        }
+
+        if (refactoredCode) {
+          aiResponse += `### Refactored Code:\n\`\`\`python\n${
+            refactoredCode
+              .split('\n')
+              .map(line => line.trim())
+              .join('\n')
+          }\n\`\`\``;
+        }
       } else {
-        aiResponse = `### Success:\n${data.message}\n\n### Code:\n\`\`\`python\n${data.code}\n\`\`\``;
+        aiResponse = `### Success:\n${data.message || ''}\n\n### Code:\n\`\`\`python\n${data.code || ''}\n\`\`\``;
       }
 
       const aiMessage = { 
