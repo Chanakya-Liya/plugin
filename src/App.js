@@ -73,7 +73,7 @@ export default function ChatApp() {
         
         if (fixSuggestion) {
           aiResponse += `### Suggested Fix:\n\`\`\`python\n${
-            fixSuggestion
+            fixSuggestion.text
               .replace('Analyze the following Python code and suggest fixes:', '')
               .replace(/```python\n/, '')
               .replace(/```$/, '')
@@ -201,11 +201,11 @@ const styles = {
   messages: {
     overflowY: "auto",
     marginBottom: 10,
-    paddingRight: "5px", // Reduced padding
+    paddingRight: "5px", 
     scrollbarWidth: "thin", 
     scrollbarColor: "#007bff #f1f1f1", 
     transition: "height 0.1s ease",
-    maxHeight: "80vh",  // Add this line
+    maxHeight: "80vh",  
   },
   message: {
     marginBottom: 12,
@@ -217,7 +217,7 @@ const styles = {
     wordBreak: "break-word",
     boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
     transition: "background-color 0.2s ease, transform 0.1s ease",
-    margin: "8px 0",  // Add this for the pre tag
+    margin: "8px 0",  
   },
   inputContainer: {
     display: "flex",
@@ -253,8 +253,8 @@ const styles = {
     textAlign: "left",
   },
   input: {
-    width: "calc(100% - 20px)",  // Account for padding
-    padding: "10px",             // Consistent 10px padding
+    width: "calc(100% - 20px)",  
+    padding: "10px",             
     border: "1px solid #ddd",
     borderRadius: 20,
     fontSize: 16,
@@ -263,7 +263,7 @@ const styles = {
     minHeight: "100px",
     resize: "vertical",
     margin: "5px 0",
-    boxSizing: "border-box",     // Include padding in width calculation
+    boxSizing: "border-box",     
   },
   sendButton: {
     height: "40px",
@@ -275,7 +275,6 @@ const styles = {
     fontSize: 16,
     transition: "all 0.3s ease",
     minWidth: "100px",
-    // Remove the cursor property from here as it's now handled inline
   },
 
   customScrollbar: {
