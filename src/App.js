@@ -72,17 +72,17 @@ export default function ChatApp() {
         aiResponse = `### Error:\n${data.message || 'Unknown error'}\n\n`;
         
         if (fixSuggestion) {
-          aiResponse += `### Suggested Fix:\n\`\`\`python\n${
+          aiResponse += `### Suggested Fix:\n\`\`\`\n${
             fixSuggestion.text
               .replace('Analyze the following Python code and suggest fixes:', '')
-              .replace(/```python\n/, '')
+              .replace(/```\n/, '')
               .replace(/```$/, '')
               .trim()
           }\n\`\`\`\n\n`;
         }
 
         if (refactoredCode) {
-          aiResponse += `### Refactored Code:\n\`\`\`python\n${
+          aiResponse += `### Refactored Code:\n\`\`\`\n${
             refactoredCode
               .split('\n')
               .map(line => line.trim())
@@ -90,7 +90,7 @@ export default function ChatApp() {
           }\n\`\`\``;
         }
       } else {
-        aiResponse = `### Success:\n${data.message || ''}\n\n### Code:\n\`\`\`python\n${data.code || ''}\n\`\`\``;
+        aiResponse = `### Success:\n${data.message || ''}\n\n### Code:\n\`\`\`\n${data.code || ''}\n\`\`\``;
       }
 
       const aiMessage = { 
@@ -201,11 +201,11 @@ const styles = {
   messages: {
     overflowY: "auto",
     marginBottom: 10,
-    paddingRight: "5px", 
+    paddingRight: "5px", // Reduced padding
     scrollbarWidth: "thin", 
     scrollbarColor: "#007bff #f1f1f1", 
     transition: "height 0.1s ease",
-    maxHeight: "80vh",  
+    maxHeight: "80vh",  // Add this line
   },
   message: {
     marginBottom: 12,
@@ -217,7 +217,7 @@ const styles = {
     wordBreak: "break-word",
     boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
     transition: "background-color 0.2s ease, transform 0.1s ease",
-    margin: "8px 0",  
+    margin: "8px 0",  // Add this for the pre tag
   },
   inputContainer: {
     display: "flex",
@@ -253,8 +253,8 @@ const styles = {
     textAlign: "left",
   },
   input: {
-    width: "calc(100% - 20px)",  
-    padding: "10px",             
+    width: "calc(100% - 20px)",  // Account for padding
+    padding: "10px",             // Consistent 10px padding
     border: "1px solid #ddd",
     borderRadius: 20,
     fontSize: 16,
@@ -263,7 +263,7 @@ const styles = {
     minHeight: "100px",
     resize: "vertical",
     margin: "5px 0",
-    boxSizing: "border-box",     
+    boxSizing: "border-box",     // Include padding in width calculation
   },
   sendButton: {
     height: "40px",
@@ -275,6 +275,7 @@ const styles = {
     fontSize: 16,
     transition: "all 0.3s ease",
     minWidth: "100px",
+    // Remove the cursor property from here as it's now handled inline
   },
 
   customScrollbar: {
